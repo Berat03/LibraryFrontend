@@ -1,25 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, {useEffect, useState} from "react";
+import DataContactBar from "./components/DataContactBar";
+import Title from "./components/Title";
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [col, setCol] = useState("bg-yellow-300")
+
+    return (
+        <div className="font-bold text-white">
+
+           <div className={`${col} h-screen`} >
+                <Title/>
+                <DataContactBar col={col} setCol= {setCol} />
+           </div>
+
+        </div>
+
+    );
 }
 
 export default App;
