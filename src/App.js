@@ -1,17 +1,18 @@
-import React, {useEffect, useState} from "react";
-import DataContactBar from "./components/DataContactBar";
-import Title from "./components/Title";
+import React, {useState} from "react";
+import NavBar from "./components/NavBar";
+import GetRecentAPI from "./API/GetRecentAPI";
 function App() {
     const [col, setCol] = useState("bg-yellow-300")
 
     return (
-        <div className="font-bold text-white">
+        <div>
+        <div className={` ${col} font-bold text-white`}>
+            <NavBar col={col} setCol= {setCol} />
+        </div>
 
-           <div className={`${col} h-screen`} >
-                <Title/>
-                <DataContactBar col={col} setCol= {setCol} />
-           </div>
-
+        <div>
+            <GetRecentAPI/>
+        </div>
         </div>
 
     );
