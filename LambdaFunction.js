@@ -5,6 +5,8 @@ exports.handler = async (event) => {
     // YYYY-MM-DD
     const queryDate = new Date().toISOString().split('T')[0];
 
+    const limit = event.queryStringParameters && event.queryStringParameters.limit ? parseInt(event.queryStringParameters.limit, 10) : 10;
+
     const params = {
         TableName: 'Bill_Bryson_Data',
         KeyConditionExpression: '#date = :dateVal',
@@ -14,8 +16,8 @@ exports.handler = async (event) => {
         ExpressionAttributeValues: {
             ':dateVal': queryDate,
         },
-        ScanIndexForward: false, // desc order
-        Limit: 10, // most recent X minutes
+        ScanIndexForward: false,
+        Limit: limit, // vary this value
     };
 
     try {
@@ -26,13 +28,12 @@ exports.handler = async (event) => {
             headers: {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Headers" : "Content-Type",
-                "Access-Control-Allow-Origin": "*",  // CHANGE THIS WHEN I DEPLOY
+                "Access-Control-Allow-Origin": "*",
                 "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
             }
         };
     } catch (error) {
         console.error(error);
-        // Need header for CORS permissions, don't remove!!
         return {
             statusCode: 500,
             body: JSON.stringify({ message: "Failed to query items" }),
