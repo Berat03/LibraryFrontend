@@ -13,10 +13,10 @@ export default function DataContactBar(props){
     }
 
     return (
-        <div className="flex justify-end  gap-3 mr-5 mt-3 ">
-            <button onClick={handleClick} value="home"> HOME </button>
-            <button onClick={handleClick} value="data"> DATA </button>
-            <button onClick={handleClick} value="contact"> CONTACT </button>
+        <div className="mt-3">
+            <button className="mr-10 " onClick={handleClick} value="home"> HOME </button>
+            <button className="mr-10" onClick={handleClick} value="data"> DATA </button>
+            <button className="mr-5" onClick={handleClick} value="contact"> CONTACT </button>
         </div>
 
     )
