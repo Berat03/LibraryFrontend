@@ -3,9 +3,11 @@ import { apiEndpoint } from "../apiEndpoint";
 
 export default function GetRecentAPI() {
   const [data, setData] = useState(null);
+  const [limit, setLimit] = useState(5); // State to hold the limit value
 
   const fetchData = () => {
-    fetch(apiEndpoint)
+    // Append the limit as a query parameter to the API endpoint
+    fetch(`${apiEndpoint}?limit=${limit}`)
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -22,7 +24,13 @@ export default function GetRecentAPI() {
 
   return (
     <div>
-      <button onClick={fetchData}>BUTTON</button>
+      <input
+        type="number"
+        value={limit}
+        onChange={e => setLimit(e.target.value)}
+        placeholder="Set limit"
+      />
+      <button onClick={fetchData}>Fetch Data</button>
     </div>
   );
 }
