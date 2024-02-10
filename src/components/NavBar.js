@@ -7,9 +7,14 @@ export default function NavBar(props) {
 
 
     return (
-            <div className="flex h-20 justify-between" >
+        <div className="flex h-20 items-center justify-between">
+            <div className="flex-1"></div> {/* Invisible spacer */}
+            <div className="flex-1 justify-center flex">
                 <Title />
-                <DataContactBar col={props.col} setCol= {props.setCol} />
             </div>
-        )
+            <div className="flex-1">
+                <DataContactBar col={props.col} setCol={props.setCol} />
+            </div>
+        </div>
+    )
 }

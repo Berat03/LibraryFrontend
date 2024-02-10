@@ -3,10 +3,9 @@ import { apiEndpoint } from "../apiEndpoint";
 
 export default function GetRecentAPI() {
   const [data, setData] = useState(null);
-  const [limit, setLimit] = useState(5); // State to hold the limit value
+  const [limit, setLimit] = useState(5);
 
   const fetchData = () => {
-    // Append the limit as a query parameter to the API endpoint
     fetch(`${apiEndpoint}?limit=${limit}`)
       .then(response => {
         if (!response.ok) {
