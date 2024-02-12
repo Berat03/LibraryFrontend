@@ -1,75 +1,65 @@
+// LandingPie.js
 import React, { useState, useEffect } from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
-import { apiEndpoint } from "../apiEndpoint";
+import { apiEndpoint } from "../API/apiEndpoint";
+import ChangeGraphButton from "./ChangeGraphButton";
 
-const LandingPie = () => {
-  const [currentTotal, setCurrentTotal] = useState(0); // State to hold the total occupancy
+const LandingPie = ({ onButtonClick }) => {
+    const [currentTotal, setCurrentTotal] = useState(0);
 
-  const fetchOccupancyData = () => {
-    fetch(`${apiEndpoint}?limit=1`) // Assuming this fetches the latest data
-      .then(response => response.json())
-      .then(data => {
-        if (data && data.length > 0) {
-          // Parse the "Total" value to remove commas and convert to a number
-          const totalValue = parseInt(data[0].Total.replace(/,/g, ''), 10);
-          setCurrentTotal(totalValue);
-        }
-      })
-      .catch(error => console.error('Error fetching data:', error));
-  };
+    useEffect(() => {
+        const fetchOccupancyData = () => {
+            fetch(`${apiEndpoint}?limit=1`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.length > 0) {
+                        const totalValue = parseInt(data[0].Total.replace(/,/g, ''), 10);
+                        setCurrentTotal(totalValue);
+                    }
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        };
 
-  useEffect(() => {
-    fetchOccupancyData();
-    const interval = setInterval(fetchOccupancyData, 60000);
-    return () => clearInterval(interval); // close
-  }, []);
+        fetchOccupancyData();
+        const interval = setInterval(fetchOccupancyData, 60000);
+        return () => clearInterval(interval);
+    }, []);
 
-  const data = {
-    labels: ['Total Occupancy', 'Remaining Capacity'],
-    datasets: [
-      {
-        data: [currentTotal, 1800 - currentTotal], // Use the fetched Total value
-        backgroundColor: [
-          'rgba(255, 99, 132, 1)', // Total Occupancy color
-          'rgba(54, 162, 235, 0)', // Remaining, transparent
+    const data = {
+        labels: ['Total Occupancy', 'Remaining Capacity'],
+        datasets: [
+            {
+                data: [currentTotal, 1800 - currentTotal],
+                backgroundColor: ['rgb(146,53,180)', 'rgba(54, 162, 235, 0)'],
+                borderWidth: 0,
+            },
         ],
-        borderWidth: 0,
-      },
-    ],
-  };
+    };
 
-  // this is given way for chartjs
-  const options = {
-    plugins: {
-      legend: {
-        display: false
-      },
-      tooltip: {
-        enabled: false
-      }
-    },
-    interaction: {
-      mode: null
-    },
-    events: [],
-    animation: {
-      animateRotate: true,
-    },
-    cutout: '80%',
-    responsive: true,
-    maintainAspectRatio: false,
-  };
+    const options = {
+        plugins: {
+            legend: { display: false },
+            tooltip: { enabled: false }
+        },
+        interaction: { mode: null },
+        animation: { animateRotate: true },
+        cutout: '80%',
+        responsive: true,
+        maintainAspectRatio: false,
+    };
 
-  // chart.js has own styling
-  return (
-    <div className="w-[400px] h-[400px] relative flex justify-center items-center">
-      <Doughnut className=" " data={data} options={options} />
-      <div className="font-extrabold text-white text-8xl centered-value absolute flex justify-center items-center">
-        {currentTotal}
-      </div>
-    </div>
-);
-
+    return (
+        <div className="w-[450px] h-[450px] relative flex justify-center items-center">
+            <Doughnut data={data} options={options} />
+            <div className="font-extrabold gap-2 text-white text-8xl centered-value absolute flex items-center flex-col">
+                {currentTotal}
+                <p className="text-base">FREE SPOTS</p>
+                <p className="text-xl">WHAT ABOUT LATER?</p>
+                <ChangeGraphButton onClick={onButtonClick} text={"GET INSIGHTS"}/>
+            </div>
+        </div>
+    );
 };
+
 export default LandingPie;
