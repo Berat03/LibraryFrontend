@@ -4,10 +4,10 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 
-// pages
 import HomePage from './pages/HomePage';
 import DataPage from './pages/DataPage';
 import NotFoundPage from "./pages/NotFoundPage";
+import ContactPage from "./pages/ContactPage";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +18,10 @@ const router = createBrowserRouter([
     {
         path: '/data',
         element: <DataPage />,
+    },
+    {
+        path:'/contact',
+        element: <ContactPage />,
     }
 ]);
 
