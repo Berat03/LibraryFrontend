@@ -4,6 +4,7 @@ import { Doughnut } from 'react-chartjs-2';
 import 'chart.js/auto';
 import { apiEndpoint } from "../API/apiEndpoint";
 import ChangeGraphButton from "./ChangeGraphButton";
+import BusyBar from "./busyBar";
 
 const LandingPie = ({ onButtonClick }) => {
     const [currentTotal, setCurrentTotal] = useState(0);
@@ -50,13 +51,24 @@ const LandingPie = ({ onButtonClick }) => {
     };
 
     return (
-        <div className="mx-auto w-[450px] h-[450px] relative flex justify-center items-center">
-            <Doughnut data={data} options={options} />
-            <div className="font-extrabold gap-2 text-white text-8xl centered-value absolute flex items-center flex-col">
-                {currentTotal}
-                <p className="text-base">FREE SPACES</p>
-                <ChangeGraphButton onClick={onButtonClick} text={"WHAT ABOUT LATER?"}/>
+        <div className="flex justify-between min-w-max">
+            <div className="">
+                <BusyBar value={currentTotal}/>
             </div>
+
+            <div className="mx-auto w-[450px] h-[450px]  flex justify-center items-center">
+                <Doughnut data={data} options={options} />
+                <div className="font-extrabold gap-2 text-white text-8xl centered-value absolute flex items-center flex-col">
+                    {currentTotal}
+                    <p className="text-base">FREE SPACES</p>
+                    <ChangeGraphButton onClick={onButtonClick} text={"WHAT ABOUT LATER?"}/>
+                </div>
+            </div>
+
+            <div>
+                { /* Placeholder for the left hand side */}
+            </div>
+
         </div>
     );
 };
