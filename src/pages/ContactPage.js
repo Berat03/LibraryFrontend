@@ -2,6 +2,8 @@ import React from "react";
 
 export default function ContactPage() {
     return (
-        <h1>Contact Page</h1>
+        <div>
+            <h1 className="text-3xl">Contact Page</h1>
+        </div>
     )
 }
