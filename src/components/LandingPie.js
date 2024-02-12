@@ -31,7 +31,7 @@ const LandingPie = ({ onButtonClick }) => {
         datasets: [
             {
                 data: [currentTotal, 1800 - currentTotal],
-                backgroundColor: ['rgb(146,53,180)', 'rgba(54, 162, 235, 0)'],
+                backgroundColor: ['rgb(146,53,180)', 'rgba(146,53,180, 0.2)'],
                 borderWidth: 0,
             },
         ],
@@ -50,13 +50,12 @@ const LandingPie = ({ onButtonClick }) => {
     };
 
     return (
-        <div className="w-[450px] h-[450px] relative flex justify-center items-center">
+        <div className="mx-auto w-[450px] h-[450px] relative flex justify-center items-center">
             <Doughnut data={data} options={options} />
             <div className="font-extrabold gap-2 text-white text-8xl centered-value absolute flex items-center flex-col">
                 {currentTotal}
-                <p className="text-base">FREE SPOTS</p>
-                <p className="text-xl">WHAT ABOUT LATER?</p>
-                <ChangeGraphButton onClick={onButtonClick} text={"GET INSIGHTS"}/>
+                <p className="text-base">FREE SPACES</p>
+                <ChangeGraphButton onClick={onButtonClick} text={"WHAT ABOUT LATER?"}/>
             </div>
         </div>
     );
