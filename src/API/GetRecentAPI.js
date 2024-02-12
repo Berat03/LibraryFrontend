@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { apiEndpoint } from "../apiEndpoint";
+import { apiEndpoint } from "./apiEndpoint";
 
 export default function GetRecentAPI() {
   const [data, setData] = useState(null);
