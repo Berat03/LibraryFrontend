@@ -5,16 +5,12 @@ export default function TitleDate() {
 
   const today = new Date();
   const day = days[today.getDay()];
-  const monthNumber = today.getMonth() + 1;
+  const date = today.getDate(); // This gets the date of the month
   const month = months[today.getMonth()];
-
-  // is there a better way to do this?
 
   return (
       <div>
-          <h1>{`${day} ${monthNumber} ${month}`}</h1>
+          <h1>{`${day} ${date} ${month}`}</h1> {/* Use date here instead of monthNumber */}
       </div>
-
   )
 }
-
