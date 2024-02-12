@@ -15,12 +15,10 @@ const LineChartFixedHours = ({ onButtonClick }) => {
             {
                 label: 'Data',
                 data: dataPoints,
-                borderColor: ['rgb(0, 200, 0)',
-                    'rgb(255, 0, 0)'],
-                backgroundColor: ['rgba(0, 200, 0, 0.5)',
-                    'rgba(255, 0, 0, 0.5)'],
-                tension: 0.1,
-                fill: true,
+                borderColor: ['rgb(200, 200, 1)',
+                    'rgb(255, 20, 1)'],
+                tension: 0.4,
+                fill: false,
             },
         ],
     };
@@ -33,16 +31,18 @@ const LineChartFixedHours = ({ onButtonClick }) => {
         responsive: true,
         maintainAspectRatio: false,
         plugins: { legend: { display: false } },
-        layout: { padding: 20 },
+        layout: { padding: 20, },
         elements: { point: { radius: 0 } },
     };
 
     return (
-        <div>
-            <div style={{width: "500px", height: "400px", background: 'white'}}>
+        <div className="flex flex-col justify-center">
+            <div style={{width: "500px", height: "400px"}}>
                 <Line data={data} options={options} />
             </div>
-            <ChangeGraphButton onClick={onButtonClick} text={"GO BACK"} />
+            <div className="">
+                <ChangeGraphButton onClick={onButtonClick} text={"GO BACK"} />
+            </div>
         </div>
     );
 };
