@@ -51,12 +51,7 @@ const LandingPie = ({ onButtonClick }) => {
     };
 
     return (
-        <div className="flex justify-between min-w-max">
-            <div className="">
-                <BusyBar value={currentTotal}/>
-            </div>
-
-            <div className="mx-auto w-[450px] h-[450px]  flex justify-center items-center">
+            <div className="w-[450px] h-[450px] flex justify-center items-center">
                 <Doughnut data={data} options={options} />
                 <div className="font-extrabold gap-2 text-white text-8xl centered-value absolute flex items-center flex-col">
                     {currentTotal}
@@ -64,12 +59,6 @@ const LandingPie = ({ onButtonClick }) => {
                     <ChangeGraphButton onClick={onButtonClick} text={"WHAT ABOUT LATER?"}/>
                 </div>
             </div>
-
-            <div>
-                { /* Placeholder for the left hand side */}
-            </div>
-
-        </div>
     );
 };
 
