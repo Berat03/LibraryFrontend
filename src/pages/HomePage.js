@@ -24,7 +24,7 @@ export default function HomePage() {
                     <NavigationBar />
                 </div>
 
-                <div className="flex-grow flex justify-center items-center">
+                <div className="flex-grow flex w-full justify-center items-center">
                     {showPieChart
                         ? <LandingPie key="pieChart" onButtonClick={handleChartToggle} />
                         : <LineChartFixedHours key="barChart" onButtonClick={handleChartToggle} />}
@@ -37,9 +37,9 @@ export default function HomePage() {
             </div>
 
             {/* New screen section */}
-            <Element name="newScreen" className="min-h-screen bg-white flex justify-center items-center">
+            <div name="newScreen" className="min-h-screen bg-white flex justify-center items-center">
                 <h1>Hello World</h1>
-            </Element>
+            </div>
         </div>
     );
 }
