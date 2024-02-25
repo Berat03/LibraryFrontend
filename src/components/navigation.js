@@ -1,11 +1,10 @@
-import { Fragment } from 'react'
 import { Disclosure} from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import {Link} from "react-router-dom";
+import TimeDay from "./timeDay";
 
 const navigation = [
   { name: 'HOME', href: '/', current: true },
-  { name: 'DATA', href: '/data', current: false },
   { name: 'CONTACT', href: '/contact', current: false },
 ]
 
@@ -13,9 +12,9 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function NavigationBar() {
+export default function Navigation() {
   return (
-    <Disclosure as="nav" className="">
+    <Disclosure as="nav" className="relative z-50 p-2 font-bold text-white">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -33,17 +32,11 @@ export default function NavigationBar() {
                 </Disclosure.Button>
               </div>
               <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-end">
-                <div className="flex flex-shrink-0 items-center ">
-                  <img
-                    className="h-8 w-auto"
-                    src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500"
-                    alt="Website Logo TODO"
-                  />
-                </div>
+
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-8 text-xl">
                     {navigation.map((item) => (
-                        <Link className="hover:bg-gray-900 rounded-md px-4 py-2" to={item.href}>{item.name}</Link>
+                        <Link className="hover:bg-gray-900 duration-300 rounded-md px-4 py-2" to={item.href}>{item.name}</Link>
 
                     ))}
                   </div>

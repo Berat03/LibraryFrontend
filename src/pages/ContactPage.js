@@ -1,12 +1,13 @@
 import React from "react";
 import myImage from "../images/WideViewCathedral.JPG";
-// import NavigationBar from "../components/navigationBar";
+import Navigation from "../components/navigation";
+// import Navigation from "../components/navigationBar";
 
 export default function Example() {
   return (
 
     <div className="bg-white h-screen">
-
+      <Navigation/>
       <div className="lg:absolute lg:inset-0 lg:left-1/2">
         <img
           className="h-64 w-full bg-gray-50 object-cover sm:h-80 lg:absolute lg:h-full center left"

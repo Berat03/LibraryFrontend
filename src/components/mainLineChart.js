@@ -3,7 +3,7 @@ import { Line } from 'react-chartjs-2';
 import 'chart.js/auto';
 import ChangeGraphButton from "./ChangeGraphButton";
 
-const LineChartFixedHours = ({ onButtonClick }) => {
+const MainLineChart = ({ onButtonClick }) => {
     const labels = ['14:00', '15:00', '16:00', '17:00', '18:00'];
     const dataPoints = [1630, 1704, 1640, 1745, 1791];
 
@@ -92,11 +92,8 @@ const LineChartFixedHours = ({ onButtonClick }) => {
             <div style={{width: "500px", height: "400px"}}>
                 <Line data={data} options={options} />
             </div>
-            <div className="">
-                <ChangeGraphButton onClick={onButtonClick} text={"GO BACK"} />
-            </div>
         </div>
     );
 };
 
-export default LineChartFixedHours;
+export default MainLineChart;

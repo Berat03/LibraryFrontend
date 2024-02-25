@@ -1,5 +1,5 @@
 import React from "react";
-export default function TitleDate() {
+export default function TimeDay() {
   const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
@@ -10,7 +10,7 @@ export default function TitleDate() {
 
   return (
       <div>
-          <h1>{`${day} ${date} ${month}`}</h1> {/* Use date here instead of monthNumber */}
+          <h1 className=" p-2 font-bold text-white text-3xl ">{`${day} ${date} ${month}`}</h1> {/* Use date here instead of monthNumber */}
       </div>
   )
 }

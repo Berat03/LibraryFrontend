@@ -1,12 +1,25 @@
 import React, { useState } from "react";
-import { Link as LinkScroll, Element } from "react-scroll"; // Import from react-scroll
-import LandingPie from "../components/LandingPie";
-import LineChartFixedHours from "../components/LineChartFixedHours";
 import CathedralImage from "../images/durhamNotMyImageRECropped.png";
-import NavigationBar from "../components/navigationBar";
+import NavBar from "../components/navBar";
+import MainGraphs from "../components/mainGraphs";
+import BasicStatsRow from "../components/basicStatsRow";
+import TimePeriodTab from "../components/timePeriodTab";
+import DashboardGrid from "../components/dashboardGrid";
+import ScrollDown from "../components/scrollDown";
 import ChangeGraphButton from "../components/ChangeGraphButton";
 
+// placeholder for API actual data
+const pieChartData = [
+    { currentTotal: 500, totalCapacity: 1000 }, // Example 1
+    { currentTotal: 300, totalCapacity: 800 },  // Example 2
+    { currentTotal: 450, totalCapacity: 1200 }, // Example 3
+    { currentTotal: 700, totalCapacity: 1200 }, // Example 4
+];
+
+
+
 export default function HomePage() {
+
     const [showPieChart, setShowPieChart] = useState(true);
 
     const handleChartToggle = () => {
@@ -18,28 +31,31 @@ export default function HomePage() {
     };
 
     return (
-        <div className="min-h-screen bg-cover bg-no-repeat bg-center flex flex-col justify-center">
-            <div style={backgroundImageStyle} className="min-h-screen flex flex-col justify-center">
-                <div className="text-center p-1 font-bold text-white w-full">
-                    <NavigationBar />
-                </div>
-
-                <div className="flex-grow flex w-full justify-center items-center">
-                    {showPieChart
-                        ? <LandingPie key="pieChart" onButtonClick={handleChartToggle} />
-                        : <LineChartFixedHours key="barChart" onButtonClick={handleChartToggle} />}
-                </div>
-                <div className="flex justify-center mb-10">
-                    <LinkScroll to="newScreen" smooth={true} duration={500}>
-                        <ChangeGraphButton text={"GET INSIGHTS"}/>
-                    </LinkScroll>
+        <div className="bg-gray-200">
+            {/* Page 1 - Landing Page*/}
+            <div className="max-h-screen flex flex-col justify-center">
+                <div style={backgroundImageStyle} className="flex flex-col h-screen justify-center">
+                    <NavBar/>
+                    <MainGraphs showPieChart={showPieChart} onChartToggle={handleChartToggle} />
+                    <div className="flex flex-col justify-center mt-5 gap-20 ">
+                            <ChangeGraphButton onClick={handleChartToggle} text={"CHANGE GRAPH"}/>
+                            <ScrollDown/>
+                    </div>
                 </div>
             </div>
 
-            {/* New screen section */}
-            <div name="newScreen" className="min-h-screen bg-white flex justify-center items-center">
-                <h1>Hello World</h1>
+            {/* Page 2 - Insights Page*/}
+
+            <div name="newScreen" className="flex flex-col min-h-screen max-h-screen">
+                <TimePeriodTab/>
+                <BasicStatsRow/>
+                <div className="flex flex-row justify-between">
+                    <DashboardGrid data={pieChartData}/>
+                    <h1>Hey</h1>
+                </div>
             </div>
+
         </div>
+
     );
 }
